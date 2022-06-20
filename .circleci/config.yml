@@ -84,16 +84,23 @@ do_steps: &do_steps
         make -C tools/lkl run-tests tests="--junit-dir ~/junit"
         find ./tools/lkl/ -type f -name "*.xml" -exec mv {} ~/junit/ \;
       no_output_timeout: "90m"
+  - run: 
+      name: package
+      command: |
+        mkdir -p ~/package
+        cd ~/package
+        tar -cvf lkl.tar -C  /home/ubuntu/project/tools/lkl
+        tar -cvf dest.tar -C  /home/ubuntu/destdir
   - store_test_results:
       path: ~/junit
   - store_artifacts:
       path: ~/junit
   - store_artifacts:
-      path: /home/ubuntu/project/tools/lkl
-      destination: lkl
+      path: /home/ubuntu/package/lkl.tar
+      destination: lkl.tar
   - store_artifacts:
-     path: /home/ubuntu/destdir
-     destination: dest
+     path: /home/ubuntu/package/dest.tar
+     destination: dest.tar
   - store_artifacts:
      path: /home/ubuntu/project/arch/lkl
      destination: arch
