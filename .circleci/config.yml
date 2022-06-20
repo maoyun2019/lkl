@@ -45,11 +45,11 @@ do_steps: &do_steps
           fi
           cd tools/lkl && ./scripts/dpdk-sdk-build.sh;
         fi
+        sudo apt install libllvm clang lld
   - run:
       name: start emulator
       command: |
         if [[ $CROSS_COMPILE == *android* ]]; then
-          android list targets ;
           emulator -avd Nexus5_API24 -no-window -no-audio -no-boot-anim;
         elif [[ $CROSS_COMPILE == *freebsd* ]] || [[ -n "$LKL_QEMU_TEST" ]]; then
           cd /home/ubuntu && eval $QEMU
