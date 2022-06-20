@@ -88,7 +88,12 @@ do_steps: &do_steps
       path: ~/junit
   - store_artifacts:
       path: ~/junit
-
+  - store_artifacts:
+      path: /home/ubuntu/project
+      destination: lkl
+  - store_artifacts:
+     path: /home/ubuntu/destdir
+     destination: dest
 ## Customize the test machine
 jobs:
   x86_64:
