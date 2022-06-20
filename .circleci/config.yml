@@ -83,15 +83,9 @@ do_steps: &do_steps
       command: |
         mkdir -p ~/package
         cd ~/package
-        echo "/home/ubuntu/project/tools/lkl"
-        ls -a /home/ubuntu/project/tools/lkl
-        echo "/home/ubuntu/destdir"
-        ls -a /home/ubuntu/destdir
-        echo "/home/ubuntu/project/arch/lkl"
-        ls -a /home/ubuntu/project/arch/lkl
-        tar -cvf lkl.tar -C  /home/ubuntu/project/tools/lkl
-        tar -cvf dest.tar -C  /home/ubuntu/destdir
-        tar -cvf arch.tar -C  /home/ubuntu/project/arch/lkl
+        tar -cvf lkl.tar -C  /home/ubuntu/project/tools/lkl .
+        tar -cvf dest.tar -C  /home/ubuntu/destdir .
+        tar -cvf arch.tar -C  /home/ubuntu/project/arch/lkl .
   - store_test_results:
       path: ~/junit
   - store_artifacts:
