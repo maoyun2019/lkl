@@ -85,6 +85,7 @@ do_steps: &do_steps
         cd ~/package
         tar -cvf lkl.tar -C  /home/ubuntu/project/tools/lkl
         tar -cvf dest.tar -C  /home/ubuntu/destdir
+        tar -cvf arch.tar -C  /home/ubuntu/project/arch/lkl
   - store_test_results:
       path: ~/junit
   - store_artifacts:
@@ -96,8 +97,8 @@ do_steps: &do_steps
      path: /home/ubuntu/package/dest.tar
      destination: dest.tar
   - store_artifacts:
-     path: /home/ubuntu/project/arch/lkl
-     destination: arch
+     path: /home/ubuntu/package/arch.tar
+     destination: arch.tar
 ## Customize the test machine
 jobs:
   x86_64:
