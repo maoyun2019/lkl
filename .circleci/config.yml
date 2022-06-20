@@ -125,6 +125,9 @@ jobs:
   android-aarch64:
    docker:
      - image: lkldocker/circleci-android-arm64:0.6
+   store_artifacts:
+          path: /home/ubuntu/project
+          path: /home/ubuntu/destdir
    environment:
      CROSS_COMPILE: "aarch64-linux-android-"
      LKL_ANDROID_TEST: 1
