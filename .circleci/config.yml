@@ -53,7 +53,6 @@ do_steps: &do_steps
         elif [[ $CROSS_COMPILE == *freebsd* ]] || [[ -n "$LKL_QEMU_TEST" ]]; then
           cd /home/ubuntu && eval $QEMU
         fi
-        ls -a /home/ubuntu/project
       background: true
   - run: cd tools/lkl && make -j8 ${MKARG}
   - run: mkdir -p ~/destdir && cd tools/lkl && make DESTDIR=~/destdir && echo 1 >> ~/destdir/dummy && mkdir -p ~/destdir/dummydir 
@@ -77,7 +76,7 @@ do_steps: &do_steps
       command: |
         mkdir -p ~/junit
         make -C tools/lkl run-tests tests="--junit-dir ~/junit"
-        find ./tools/lkl/ -type f -name "*.xml" -exec mv {} ~/junit/ \;
+        find ./tools/lkl/ -type f -name "*.xml" -exec cp -r  {} ~/junit/ \;
       no_output_timeout: "90m"
   - run: 
       name: package
