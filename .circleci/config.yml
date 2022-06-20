@@ -55,7 +55,7 @@ do_steps: &do_steps
         fi
       background: true
   - run: cd tools/lkl && make -j8 ${MKARG}
-  - run: mkdir -p ~/destdir && cd tools/lkl && make DESTDIR=~/destdir && touch ~/destdir/dummy
+  - run: mkdir -p ~/destdir && cd tools/lkl && make DESTDIR=~/destdir && echo 1 >> ~/destdir/dummy && mkdir -p ~/destdir/dummydir 
   - save_cache:
      paths:
        - /home/ubuntu/.ccache
