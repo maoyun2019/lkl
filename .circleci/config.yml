@@ -107,29 +107,6 @@ jobs:
      MKARG: "dpdk=no"
    <<: *do_steps
 
-  i386:
-   docker:
-     - image: lkldocker/circleci-i386:0.1
-   environment:
-     CROSS_COMPILE: ""
-   <<: *do_steps
-
-  mingw32:
-   docker:
-     - image: lkldocker/circleci-mingw:0.6
-   environment:
-     CROSS_COMPILE: "i686-w64-mingw32-"
-   <<: *do_steps
-
-  android-arm32:
-   docker:
-     - image: lkldocker/circleci-android-arm32:0.6
-   environment:
-     CROSS_COMPILE: "arm-linux-androideabi-"
-     LKL_ANDROID_TEST: 1
-     ANDROID_SDK_ROOT: /home/ubuntu/android-sdk
-   <<: *do_steps
-
   android-aarch64:
    docker:
      - image: lkldocker/circleci-android-arm64:0.6
@@ -170,11 +147,8 @@ workflows:
     jobs:
      - x86_64
      - x86_64_qemu
-     - mingw32
-     - android-arm32
      - android-aarch64
      - freebsd11_x86_64
-     - i386
   nightly:
     triggers:
       - schedule:
