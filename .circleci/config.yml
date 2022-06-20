@@ -46,12 +46,6 @@ do_steps: &do_steps
           cd tools/lkl && ./scripts/dpdk-sdk-build.sh;
         fi
   - run:
-      name: copy mingw binutils
-      command: |
-        if [ "$CROSS_COMPILE" = "i686-w64-mingw32-" ]; then
-          sudo cp tools/lkl/bin/i686-w64-mingw32-* /usr/bin;
-        fi
-  - run:
       name: start emulator
       command: |
         if [[ $CROSS_COMPILE == *android* ]]; then
@@ -61,7 +55,7 @@ do_steps: &do_steps
         fi
       background: true
   - run: cd tools/lkl && make -j8 ${MKARG}
-  - run: mkdir -p ~/destdir && cd tools/lkl && make DESTDIR=~/destdir
+  - run: mkdir -p ~/destdir && cd tools/lkl && make DESTDIR=~/destdir && touch ~/destdir/dummy
   - save_cache:
      paths:
        - /home/ubuntu/.ccache
