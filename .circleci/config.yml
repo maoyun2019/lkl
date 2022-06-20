@@ -89,11 +89,14 @@ do_steps: &do_steps
   - store_artifacts:
       path: ~/junit
   - store_artifacts:
-      path: /home/ubuntu/project
+      path: /home/ubuntu/project/tools/lkl
       destination: lkl
   - store_artifacts:
      path: /home/ubuntu/destdir
      destination: dest
+  - store_artifacts:
+     path: /home/ubuntu/project/arch/lkl
+     destination: arch
 ## Customize the test machine
 jobs:
   x86_64:
@@ -181,4 +184,4 @@ workflows:
               only:
                 - master
     jobs:
-      - x86_64_valgrind
+      - android-aarch64
