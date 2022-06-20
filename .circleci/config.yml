@@ -49,7 +49,7 @@ do_steps: &do_steps
       name: start emulator
       command: |
         if [[ $CROSS_COMPILE == *android* ]]; then
-          emulator --help
+          emulator -avd ?
           emulator -avd Nexus5_API24 -no-window -no-audio -no-boot-anim;
         elif [[ $CROSS_COMPILE == *freebsd* ]] || [[ -n "$LKL_QEMU_TEST" ]]; then
           cd /home/ubuntu && eval $QEMU
