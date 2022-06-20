@@ -45,7 +45,8 @@ do_steps: &do_steps
           fi
           cd tools/lkl && ./scripts/dpdk-sdk-build.sh;
         fi
-        sudo apt install libllvm clang lld
+        cat /etc/sources.list;
+        sudo apt search lld;
   - run:
       name: start emulator
       command: |
