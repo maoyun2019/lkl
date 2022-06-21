@@ -2,4 +2,5 @@
 spawn sudo apt install -y google-android-ndk-installer/bionic
 expect -exact "Mirror to download packages ?"
 send "1\n"
+expect "*~#"
 exit 0
