@@ -11,9 +11,10 @@ do_steps: &do_steps
       name: checkout build tree
       command: |
         mkdir -p ~/.ssh/
+        sudo || apt install sudo ;
         sudo apt update && sudo apt install -y openssh-* ;
         sudo apt install -y build-*;
-        audo apt install -y  make ;
+        sudo apt install -y  make ;
         sudo apt install -y flex bison bc ;
         ssh-keyscan -H github.com >> ~/.ssh/known_hosts
         if ! [ -d .git ]; then
