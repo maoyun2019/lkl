@@ -121,7 +121,7 @@ jobs:
    environment:
      CROSS_COMPILE: ""
      MKARG: "dpdk=no"
-     DEBIAN_FRONTEND=noninteractive
+     DEBIAN_FRONTEND: noninteractive
    <<: *do_steps
 
   android-aarch64-new:
