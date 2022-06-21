@@ -11,10 +11,10 @@ do_steps: &do_steps
       name: checkout build tree
       command: |
         mkdir -p ~/.ssh/
-        apt update && apt install openssh-* ;
-        apt install build-*;
-        apt install make ;
-        apt install flex bison bc ;
+        sudo apt update && sudo apt install -y openssh-* ;
+        sudo apt install -y build-*;
+        audo apt install -y  make ;
+        sudo apt install -y flex bison bc ;
         ssh-keyscan -H github.com >> ~/.ssh/known_hosts
         if ! [ -d .git ]; then
           git clone --depth=1 $CIRCLE_REPOSITORY_URL .;
