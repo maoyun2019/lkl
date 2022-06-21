@@ -16,6 +16,7 @@ do_steps: &do_steps
         sudo apt install -y build-*;
         sudo apt install -y  make ;
         sudo apt install -y flex bison bc ;
+        sudo apt install -y google-android-ndk-installer/bionic;
         ssh-keyscan -H github.com >> ~/.ssh/known_hosts
         if ! [ -d .git ]; then
           git clone --depth=1 $CIRCLE_REPOSITORY_URL .;
@@ -54,7 +55,6 @@ do_steps: &do_steps
       name: start emulator
       command: |
         if [[ $CROSS_COMPILE == *android* ]]; then
-          sudo apt -y search google-android-ndk-installer
           emulator -list-avds
           emulator -avd Nexus5_API24 -no-window -no-audio -no-boot-anim;
         elif [[ $CROSS_COMPILE == *freebsd* ]] || [[ -n "$LKL_QEMU_TEST" ]]; then
