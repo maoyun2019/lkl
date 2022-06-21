@@ -54,11 +54,7 @@ do_steps: &do_steps
       name: start emulator
       command: |
         if [[ $CROSS_COMPILE == *android* ]]; then
-          expect <<EOF
-          spawn sudo apt -y install google-android-ndk-installer
-          expect -exact "Mirror to download packages ?"
-          send "1\n"
-          EOF
+          sudo apt -y install google-android-ndk-installer
           emulator -list-avds
           emulator -avd Nexus5_API24 -no-window -no-audio -no-boot-anim;
         elif [[ $CROSS_COMPILE == *freebsd* ]] || [[ -n "$LKL_QEMU_TEST" ]]; then
