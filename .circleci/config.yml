@@ -117,7 +117,7 @@ jobs:
 
   android-aarch64-new:
     docker:
-      - image: inv3rse/android-sdk-27
+      - image: javiersantos/android-ci:latest
     environment:
       CROSS_COMPILE: "aarch64-linux-android-"
       LKL_ANDROID_TEST: 1
