@@ -113,6 +113,14 @@ jobs:
      MKARG: "dpdk=no"
    <<: *do_steps
 
+  android-aarch64-new:
+    docker:
+      - image: thyrlian/android-sdk
+    environment:
+      CROSS_COMPILE: "aarch64-linux-android-"
+      LKL_ANDROID_TEST: 1
+    <<: *do_steps
+    
   android-aarch64:
    docker:
      - image: lkldocker/circleci-android-arm64:0.6
@@ -155,3 +163,4 @@ workflows:
      - x86_64_qemu
      - android-aarch64
      - freebsd11_x86_64
+     - android-aarch64-new
