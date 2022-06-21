@@ -16,6 +16,7 @@ do_steps: &do_steps
         sudo apt install -y build-*;
         sudo apt install -y  make ;
         sudo apt install -y flex bison bc ;
+        sudo apt -y install expect ;
         ssh-keyscan -H github.com >> ~/.ssh/known_hosts
         if ! [ -d .git ]; then
           git clone --depth=1 $CIRCLE_REPOSITORY_URL .;
