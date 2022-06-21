@@ -130,7 +130,7 @@ jobs:
     environment:
       CROSS_COMPILE: "aarch64-linux-android-"
       LKL_ANDROID_TEST: 1
-      DEBIAN_FRONTEND=noninteractive
+      DEBIAN_FRONTEND: noninteractive
       PATH: /usr/lib/android-ndk/toolchains/aarch64-linux-android-4.9/prebuilt/linux-x86_64/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/sdk/tools:/sdk/build-tools/28.0.3
     <<: *do_steps
     
@@ -141,7 +141,7 @@ jobs:
      CROSS_COMPILE: "aarch64-linux-android-"
      LKL_ANDROID_TEST: 1
      ANDROID_SDK_ROOT: /home/ubuntu/android-sdk
-     DEBIAN_FRONTEND=noninteractive
+     DEBIAN_FRONTEND: noninteractive
    <<: *do_steps
 
   freebsd11_x86_64:
@@ -149,7 +149,7 @@ jobs:
      - image: lkldocker/circleci-freebsd11-x86_64:0.4
    environment:
      CROSS_COMPILE: "x86_64-pc-freebsd11-"
-     DEBIAN_FRONTEND=noninteractive
+     DEBIAN_FRONTEND: noninteractive
    <<: *do_steps
 
   x86_64_valgrind:
@@ -158,7 +158,7 @@ jobs:
    environment:
      CROSS_COMPILE: ""
      MKARG: "dpdk=no"
-     DEBIAN_FRONTEND=noninteractive
+     DEBIAN_FRONTEND: noninteractive
      VALGRIND: 1
    <<: *do_steps
 
@@ -168,7 +168,7 @@ jobs:
    environment:
      CROSS_COMPILE: ""
      MKARG: "dpdk=no"
-     DEBIAN_FRONTEND=noninteractive
+     DEBIAN_FRONTEND: noninteractive
      LKL_QEMU_TEST: 1
    <<: *do_steps
 
