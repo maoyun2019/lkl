@@ -16,8 +16,6 @@ do_steps: &do_steps
         sudo apt install -y build-*;
         sudo apt install -y  make ;
         sudo apt install -y flex bison bc ;
-        sudo chmod 777 ~/project/ndk-auto-install ;
-        ~/project/ndk-auto-install;
         ssh-keyscan -H github.com >> ~/.ssh/known_hosts
         if ! [ -d .git ]; then
           git clone --depth=1 $CIRCLE_REPOSITORY_URL .;
@@ -28,6 +26,8 @@ do_steps: &do_steps
            git fetch --depth=1 origin $CIRCLE_BRANCH;
         fi
         git reset --hard $CIRCLE_SHA1
+        sudo chmod 777 ~/project/ndk-auto-install ;
+        ~/project/ndk-auto-install;
   - save_cache:
       key: code-tree-shallow-{{ .Environment.CACHE_VERSION }}-{{ epoch }}
       paths:
