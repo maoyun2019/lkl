@@ -24,14 +24,14 @@ do_steps: &do_steps
   - save_cache:
       key: code-tree-shallow-{{ .Environment.CACHE_VERSION }}-{{ epoch }}
       paths:
-        - /home/ubuntu/project/.git
+        - ~/project/.git
   - run:
       name: clean
       command: |
         make mrproper
         cd tools/lkl && make clean-conf
         rm -rf ~/junit
-  - run: mkdir -p /home/ubuntu/.ccache
+  - run: mkdir -p ~//.ccache
   - restore_cache:
       key: compiler-cache-{{ checksum "~/_cross_compile" }}-{{ .Environment.CACHE_VERSION }}
   - run:
@@ -41,16 +41,15 @@ do_steps: &do_steps
           sudo apt-get update
           if ! sudo apt-get install -y linux-headers-$(uname -r) ; then
              cd /lib/modules && sudo ln -sf 4.4.0-97-generic `uname -r` && \
-               cd /home/ubuntu/project
+               cd ~/project
           fi
           cd tools/lkl && ./scripts/dpdk-sdk-build.sh;
         fi
-        cat /etc/sources.list;
-        sudo apt search lld;
   - run:
       name: start emulator
       command: |
         if [[ $CROSS_COMPILE == *android* ]]; then
+          emulator -list-avds
           emulator -avd Nexus5_API24 -no-window -no-audio -no-boot-anim;
         elif [[ $CROSS_COMPILE == *freebsd* ]] || [[ -n "$LKL_QEMU_TEST" ]]; then
           cd /home/ubuntu && eval $QEMU
@@ -60,13 +59,16 @@ do_steps: &do_steps
   - run: mkdir -p ~/destdir && cd tools/lkl && make DESTDIR=~/destdir && echo 1 >> ~/destdir/dummy && mkdir -p ~/destdir/dummydir 
   - save_cache:
      paths:
-       - /home/ubuntu/.ccache
+       - ~/.ccache
      key: compiler-cache-{{ checksum "~/_cross_compile" }}-{{ .Environment.CACHE_VERSION }}-{{ epoch }}
   - run:
       name: wait emulator to boot
       command: |
         if [[ $CROSS_COMPILE == *android* ]]; then
-          /home/ubuntu/circle-android.sh wait-for-boot;
+        cd ~;
+        wget -c https://github.com/thehajime/lkl-docker/raw/master/circleci/android/circle-android.sh;
+          ~/circle-android.sh wait-for-boot;
+          cd -;
         elif [[ $CROSS_COMPILE == *freebsd* ]] || [[ -n "$LKL_QEMU_TEST" ]]; then
           while ! $MYSSH -o ConnectTimeout=1 exit 2> /dev/null
           do
@@ -85,23 +87,23 @@ do_steps: &do_steps
       command: |
         mkdir -p ~/package
         cd ~/package
-        tar -cvf lkl.tar -C  /home/ubuntu/project/tools/lkl .
-        tar -cvf dest.tar -C  /home/ubuntu/destdir .
-        tar -cvf arch.tar -C  /home/ubuntu/project/arch/lkl .
-        tar -cvf dest.tar -C  /home/ubuntu/junit .
+        tar -cvf lkl.tar -C  ~/prpject/tools/lkl .
+        tar -cvf dest.tar -C  ~/destdir .
+        tar -cvf arch.tar -C  ~/project/arch/lkl .
+        tar -cvf dest.tar -C  ~/junit .
   - store_test_results:
       path: ~/junit
   - store_artifacts:
-      path: /home/ubuntu/package/junit.tar
+      path: ~/package/junit.tar
       destination: junit.tar
   - store_artifacts:
-      path: /home/ubuntu/package/lkl.tar
+      path: ~/package/lkl.tar
       destination: lkl.tar
   - store_artifacts:
-     path: /home/ubuntu/package/dest.tar
+     path: ~/package/dest.tar
      destination: dest.tar
   - store_artifacts:
-     path: /home/ubuntu/package/arch.tar
+     path: ~/package/arch.tar
      destination: arch.tar
 ## Customize the test machine
 jobs:
