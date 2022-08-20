@@ -178,8 +178,4 @@ workflows:
   version: 2
   build:
     jobs:
-     - x86_64
-     - x86_64_qemu
      - android-aarch64
-     - freebsd11_x86_64
-     - android-aarch64-new
