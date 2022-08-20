@@ -1,5 +1,4 @@
 #!/usr/bin/env expect
-spawn cat /etc/apt/sources.list
 spawn sudo apt search -y google-android*
 expect -exact "Mirror to download packages ?"
 send "1\n"
