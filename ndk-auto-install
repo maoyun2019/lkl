@@ -1,5 +1,5 @@
 #!/usr/bin/env expect
-spawn sudo apt search -y google-android*
+spawn sudo apt install -y google-android-ndk-installer 
 expect -exact "Mirror to download packages ?"
 send "1\n"
 expect "*~#"
