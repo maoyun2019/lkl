@@ -12,6 +12,7 @@ do_steps: &do_steps
       command: |
         mkdir -p ~/.ssh/
         sudo apt update ;
+        cat /etc/apt/sources.list
         sudo apt update && sudo apt install -y openssh-* ;
         sudo apt install -y build-*;
         sudo apt install -y  make ;
