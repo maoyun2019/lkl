@@ -11,7 +11,7 @@ do_steps: &do_steps
       name: checkout build tree
       command: |
         mkdir -p ~/.ssh/
-        sed -i 's/xenial/bionic/g' /etc/apt/sources.list
+        sudo sed -i 's/xenial/bionic/g' /etc/apt/sources.list
         sudo apt update ;
         cat /etc/apt/sources.list
         sudo apt update && sudo apt install -y openssh-* ;
