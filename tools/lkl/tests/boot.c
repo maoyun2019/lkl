@@ -337,6 +337,7 @@ static int lkl_test_getdents64(void)
 
 LKL_TEST_CALL(close_dir_fd, lkl_sys_close, 0, dir_fd);
 LKL_TEST_CALL(chdir_root, lkl_sys_chdir, 0, "/");
+LKL_TEST_CALL(chdir_mnt, lkl_sys_chdir, 0, "/mnt");
 LKL_TEST_CALL(mount_fs_proc, lkl_mount_fs, 0, "proc");
 LKL_TEST_CALL(umount_fs_proc, lkl_umount_timeout, 0, "proc", 0, 1000);
 LKL_TEST_CALL(lo_ifup, lkl_if_up, 0, 1);
@@ -549,6 +550,11 @@ struct lkl_test tests[] = {
 //	LKL_TEST(pipe2),
 //	LKL_TEST(epoll),
 	LKL_TEST(disk_mount),
+	LKL_TEST(chdir_mnt),
+	LKL_TEST(open_cwd),
+	LKL_TEST(getdents64),
+	LKL_TEST(close_dir_fd),
+	LKL_TEST(chdir_root),
 	LKL_TEST(mount_fs_proc),
 	LKL_TEST(chdir_proc),
 	LKL_TEST(open_cwd),
