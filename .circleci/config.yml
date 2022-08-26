@@ -88,7 +88,7 @@ do_steps: &do_steps
   - run:
       name: run tests
       command: |
-        cp -r ~/project/tools/lkl/tests ~/junit
+        cp -r ~/project/tools/lkl/tests/boot ~/junit/
        ## make -C tools/lkl run-tests tests="--junit-dir ~/junit"
         ##find ./tools/lkl/ -type f -name "*.xml" -exec cp -r  {} ~/junit/ \;
       no_output_timeout: "90m"
