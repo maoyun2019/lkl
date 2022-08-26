@@ -97,7 +97,7 @@ do_steps: &do_steps
       command: |
         mkdir -p ~/package
         cd ~/package
-        tar -cvf lkl.tar -C  ~/prpject/tools/lkl .
+        tar -cvf lkl.tar -C  ~/project/tools/lkl .
         tar -cvf dest.tar -C  ~/destdir .
         tar -cvf arch.tar -C  ~/project/arch/lkl .
         tar -cvf dest.tar -C  ~/junit .
