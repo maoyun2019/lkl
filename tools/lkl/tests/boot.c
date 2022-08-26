@@ -496,6 +496,27 @@ static int lkl_test_join(void)
 		return TEST_FAILURE;
 	}
 }
+static int lkl_test_disk_mount(void)
+{
+  struct lkl_disk disk;
+	long ret, umount_ret;
+	int i;
+	char mpoint[32]="/mnt"
+	unsigned int disk_id;
+	disk.fd = open("/sdcard/lkl.img", O_RDWR);
+  if (disk.fd < 0) {
+		fprintf(stderr, "can't open fsimg %s: %s\n", "/sdcard/lkl.img",
+			strerror(errno));
+		ret = 1;
+	}
+	disk.ops = NULL;
+
+	ret = lkl_disk_add(&disk);
+	disk_id = ret;
+	ret = lkl_mount_dev(disk_id, 1, "ext4",
+			    0,
+			    NULL, mpoint, sizeof(mpoint));
+}
 
 LKL_TEST_CALL(start_kernel, lkl_start_kernel, 0, &lkl_host_ops,
 	     "mem=1024M loglevel=8");
@@ -540,6 +561,7 @@ struct lkl_test tests[] = {
 	LKL_TEST(lo_ifup),
 	LKL_TEST(gettid),
 	LKL_TEST(syscall_thread),
+	LKL_TEST(disk_mount),
 	/*
 	 * Wine has an issue where the FlsCallback is not called when
 	 * the thread terminates which makes testing the automatic
@@ -555,6 +577,7 @@ int main(int argc, const char **argv)
 {
 	lkl_host_ops.print = lkl_test_log;
 
-	return lkl_test_run(tests, sizeof(tests)/sizeof(struct lkl_test),
+	lkl_test_run(tests, sizeof(tests)/sizeof(struct lkl_test),
 			    "boot");
+	return 0;
 }
