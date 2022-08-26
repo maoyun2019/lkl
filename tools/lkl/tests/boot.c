@@ -514,7 +514,7 @@ static int lkl_test_disk_mount(void)
 
 	ret = lkl_disk_add(&disk);
 	disk_id = ret;
-	ret = lkl_mount_dev(disk_id, 2, "ext4",
+	ret = lkl_mount_dev(disk_id, 2, "ext2",
 			    0,
 			    NULL, mpoint, sizeof(mpoint));
 }
