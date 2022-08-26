@@ -337,7 +337,7 @@ static int lkl_test_getdents64(void)
 
 LKL_TEST_CALL(close_dir_fd, lkl_sys_close, 0, dir_fd);
 LKL_TEST_CALL(chdir_root, lkl_sys_chdir, 0, "/");
-LKL_TEST_CALL(chdir_mnt, lkl_sys_chdir, 0, "/mnt");
+LKL_TEST_CALL(chdir_mnt, lkl_sys_chdir, 0, "/mnt/0000fe02");
 LKL_TEST_CALL(mount_fs_proc, lkl_mount_fs, 0, "proc");
 LKL_TEST_CALL(umount_fs_proc, lkl_umount_timeout, 0, "proc", 0, 1000);
 LKL_TEST_CALL(lo_ifup, lkl_if_up, 0, 1);
