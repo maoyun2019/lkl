@@ -497,6 +497,17 @@ static int lkl_test_join(void)
 		return TEST_FAILURE;
 	}
 }
+static int lkl_test_chroot(void)
+{
+  int ret = lkl_sys_chroot("/mnt/0000fe02");
+  if (ret == 0) {
+		lkl_test_logf("chroot success!");
+		return TEST_SUCCESS;
+	} else {
+		lkl_test_logf("chroot failed :(");
+		return TEST_FAILURE;
+	}
+}
 static int lkl_test_disk_mount(void)
 {
   struct lkl_disk disk;
@@ -554,6 +565,7 @@ struct lkl_test tests[] = {
 	LKL_TEST(open_cwd),
 	LKL_TEST(getdents64),
 	LKL_TEST(close_dir_fd),
+	LKL_TEST(chroot),
 	LKL_TEST(chdir_root),
 	LKL_TEST(mount_fs_proc),
 	LKL_TEST(chdir_proc),
