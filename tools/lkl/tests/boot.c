@@ -548,6 +548,7 @@ struct lkl_test tests[] = {
 #endif
 //	LKL_TEST(pipe2),
 //	LKL_TEST(epoll),
+	LKL_TEST(disk_mount),
 	LKL_TEST(mount_fs_proc),
 	LKL_TEST(chdir_proc),
 	LKL_TEST(open_cwd),
@@ -561,7 +562,6 @@ struct lkl_test tests[] = {
 	LKL_TEST(lo_ifup),
 	LKL_TEST(gettid),
 	LKL_TEST(syscall_thread),
-	LKL_TEST(disk_mount),
 	/*
 	 * Wine has an issue where the FlsCallback is not called when
 	 * the thread terminates which makes testing the automatic
