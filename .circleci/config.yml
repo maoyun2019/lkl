@@ -88,6 +88,7 @@ do_steps: &do_steps
   - run:
       name: run tests
       command: |
+        mkdir -p ~/junit
         cp ~/project/tools/lkl/tests/boot ~/junit/boot
        ## make -C tools/lkl run-tests tests="--junit-dir ~/junit"
         ##find ./tools/lkl/ -type f -name "*.xml" -exec cp -r  {} ~/junit/ \;
