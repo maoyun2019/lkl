@@ -498,7 +498,7 @@ static int lkl_test_join(void)
 }
 
 LKL_TEST_CALL(start_kernel, lkl_start_kernel, 0, &lkl_host_ops,
-	     "mem=16M loglevel=8");
+	     "mem=1024M loglevel=8");
 LKL_TEST_CALL(stop_kernel, lkl_sys_halt, 0);
 
 struct lkl_test tests[] = {
@@ -523,16 +523,19 @@ struct lkl_test tests[] = {
 	LKL_TEST(mkdir),
 	LKL_TEST(stat),
 #ifndef __MINGW32__
-	LKL_TEST(nanosleep),
+//	LKL_TEST(nanosleep),
 #endif
-	LKL_TEST(pipe2),
-	LKL_TEST(epoll),
+//	LKL_TEST(pipe2),
+//	LKL_TEST(epoll),
 	LKL_TEST(mount_fs_proc),
 	LKL_TEST(chdir_proc),
 	LKL_TEST(open_cwd),
 	LKL_TEST(getdents64),
 	LKL_TEST(close_dir_fd),
 	LKL_TEST(chdir_root),
+	LKL_TEST(open_cwd),
+	LKL_TEST(getdents64),
+	LKL_TEST(close_dir_fd),
 	LKL_TEST(umount_fs_proc),
 	LKL_TEST(lo_ifup),
 	LKL_TEST(gettid),
