@@ -501,7 +501,7 @@ static int lkl_test_disk_mount(void)
   struct lkl_disk disk;
 	long ret, umount_ret;
 	int i;
-	char mpoint[32]="/mnt"
+	char mpoint[32]="/mnt";
 	unsigned int disk_id;
 	disk.fd = open("/sdcard/lkl.img", O_RDWR);
   if (disk.fd < 0) {
