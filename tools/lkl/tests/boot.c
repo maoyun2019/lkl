@@ -537,7 +537,7 @@ static int lkl_test_execve(void)
 //  int ret;
   char *sc[3]; 
   sc[0]="/bin/uname"; 
-  sc[1]="-a"
+  sc[1]="-a";
   sc[2]= NULL; 
 //  int ret = lkl_sys_execve(sc[0],sc,(char*[]){NULL});
   //if (!(pid=lkl_sys_fork())) {
