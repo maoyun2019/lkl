@@ -531,7 +531,7 @@ static int lkl_test_chroot(void)
 		return TEST_FAILURE;
 	}
 }
-static int lkl_test_execve
+static int lkl_test_execve(void)
 {
   int ret = lkl_sys_execve("/bin/bash","bash","ENV=_")
   if (ret == 0) {
