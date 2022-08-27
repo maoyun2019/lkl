@@ -551,7 +551,6 @@ static int lkl_test_execve(void)
 //		lkl_test_logf("errno is %ld",errno);
 		//fprintf("errno :",strerror(errno));
 //		return TEST_FAILURE;
-	}
 }
 static int lkl_test_chmod(void)
 {
