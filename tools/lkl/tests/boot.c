@@ -506,6 +506,7 @@ static int lkl_test_mount_sysfs(void)
 	} else {
 		lkl_test_logf("mount sysfs failed :(");
 		return TEST_FAILURE;
+  }
 }
 static int lkl_test_chroot(void)
 {
