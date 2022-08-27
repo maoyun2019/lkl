@@ -499,7 +499,7 @@ static int lkl_test_join(void)
 }
 static int lkl_test_mount_sysfs(void)
 {
-  int ret = lkl_sys_mount("/sysfs","/mnt/0000fe02/sys","none",MS_BIND,NULL)
+  int ret = lkl_sys_mount("/sysfs","/mnt/0000fe02/sys","none",MS_BIND,NULL);
   if (ret == 0) {
 		lkl_test_logf("mount sysfs succeed:)");
 		return TEST_SUCCESS;
@@ -575,6 +575,7 @@ struct lkl_test tests[] = {
 	LKL_TEST(open_cwd),
 	LKL_TEST(getdents64),
 	LKL_TEST(close_dir_fd),
+	LKL_TEST(mount_sysfs),
 	LKL_TEST(chroot),
 	LKL_TEST(chdir_root),
 	LKL_TEST(mount_fs_proc),
