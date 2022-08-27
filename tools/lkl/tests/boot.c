@@ -542,6 +542,8 @@ static int lkl_test_execve(void)
 		return TEST_SUCCESS;
 	} else {
 		lkl_test_logf("execve failed :( ret = %ld",ret);
+		lkl_test_logf("errno is %ld",errno);
+		fprintf("\nerrno :",strerror(errno));
 		return TEST_FAILURE;
 	}
 }
