@@ -342,6 +342,7 @@ LKL_TEST_CALL(mount_fs_proc, lkl_mount_fs, 0, "proc");
 LKL_TEST_CALL(umount_fs_proc, lkl_umount_timeout, 0, "proc", 0, 1000);
 LKL_TEST_CALL(lo_ifup, lkl_if_up, 0, 1);
 LKL_TEST_CALL(chdir_sys, lkl_sys_chdir, 0, "/sys");
+LKL_TEST_CALL(chdir_dev, lkl_sys_chdir, 0, "/dev");
 static int lkl_test_mutex(void)
 {
 	long ret = TEST_SUCCESS;
@@ -508,6 +509,17 @@ static int lkl_test_mount_sysfs(void)
 		return TEST_FAILURE;
   }
 }
+static int lkl_test_mount_devfs(void)
+{
+  int ret = lkl_sys_mount("/dev","/mnt/0000fe02/dev","none",4096,NULL);
+  if (ret == 0) {
+		lkl_test_logf("mount devfs succeed:)");
+		return TEST_SUCCESS;
+	} else {
+		lkl_test_logf("mount devfs failed :(");
+		return TEST_FAILURE;
+  }
+}
 static int lkl_test_chroot(void)
 {
   int ret = lkl_sys_chroot("/mnt/0000fe02");
@@ -577,10 +589,15 @@ struct lkl_test tests[] = {
 	LKL_TEST(getdents64),
 	LKL_TEST(close_dir_fd),
 	LKL_TEST(mount_sysfs),
+	LKL_TEST(mount_devfs),
 	LKL_TEST(chroot),
 	LKL_TEST(chdir_root),
 	LKL_TEST(mount_fs_proc),
 	LKL_TEST(chdir_proc),
+	LKL_TEST(open_cwd),
+	LKL_TEST(getdents64),
+	LKL_TEST(close_dir_fd),
+	LKL_TEST(chdir_dev),
 	LKL_TEST(open_cwd),
 	LKL_TEST(getdents64),
 	LKL_TEST(close_dir_fd),
