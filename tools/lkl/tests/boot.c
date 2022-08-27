@@ -339,7 +339,7 @@ LKL_TEST_CALL(close_dir_fd, lkl_sys_close, 0, dir_fd);
 LKL_TEST_CALL(chdir_root, lkl_sys_chdir, 0, "/");
 LKL_TEST_CALL(chdir_mnt, lkl_sys_chdir, 0, "/mnt/0000fe02");
 LKL_TEST_CALL(mount_fs_proc, lkl_mount_fs, 0, "proc");
-LKL_TEST_CALL(umount_fs_proc, lkl_umount_timeout, 0, "proc", 0, 1000);
+//LKL_TEST_CALL(umount_fs_proc, lkl_umount_timeout, 0, "proc", 0, 1000);
 LKL_TEST_CALL(lo_ifup, lkl_if_up, 0, 1);
 LKL_TEST_CALL(chdir_sys, lkl_sys_chdir, 0, "/sys");
 LKL_TEST_CALL(chdir_dev, lkl_sys_chdir, 0, "/dev");
@@ -531,6 +531,18 @@ static int lkl_test_chroot(void)
 		return TEST_FAILURE;
 	}
 }
+static int lkl_test_execve
+{
+  int ret = lkl_sys_execve("/bin/bash","bash","ENV=_")
+  if (ret == 0) {
+		lkl_test_logf("execve success!");
+		return TEST_SUCCESS;
+	} else {
+		lkl_test_logf("execve failed :(");
+		return TEST_FAILURE;
+	}
+}
+}
 static int lkl_test_disk_mount(void)
 {
   struct lkl_disk disk;
@@ -607,9 +619,9 @@ struct lkl_test tests[] = {
 	LKL_TEST(close_dir_fd),
 	LKL_TEST(chdir_root),
 	LKL_TEST(open_cwd),
+	LKL_TEST(execve),
 	LKL_TEST(getdents64),
 	LKL_TEST(close_dir_fd),
-	LKL_TEST(umount_fs_proc),
 	LKL_TEST(lo_ifup),
 	LKL_TEST(gettid),
 	LKL_TEST(syscall_thread),
