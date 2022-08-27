@@ -499,7 +499,7 @@ static int lkl_test_join(void)
 }
 static int lkl_test_mount_sysfs(void)
 {
-  int ret = lkl_sys_mount("/sysfs","/mnt/0000fe02/sys","none",MS_BIND,NULL);
+  int ret = lkl_sys_mount("/sysfs","/mnt/0000fe02/sys","none",4096,NULL);
   if (ret == 0) {
 		lkl_test_logf("mount sysfs succeed:)");
 		return TEST_SUCCESS;
