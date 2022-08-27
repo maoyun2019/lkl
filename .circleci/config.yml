@@ -58,12 +58,7 @@ do_steps: &do_steps
   - run:
       name: start emulator
       command: |
-        if [[ $CROSS_COMPILE == *android* ]]; then
-          emulator -list-avds
-          emulator -avd Nexus5_API24 -no-window -no-audio -no-boot-anim;
-        elif [[ $CROSS_COMPILE == *freebsd* ]] || [[ -n "$LKL_QEMU_TEST" ]]; then
-          cd /home/ubuntu && eval $QEMU
-        fi
+        echo "0";
       background: true
   - run: cd tools/lkl && make -j8 ${MKARG}
   - run: mkdir -p ~/destdir && cd tools/lkl && make DESTDIR=~/destdir && echo 1 >> ~/destdir/dummy && mkdir -p ~/destdir/dummydir 
@@ -74,17 +69,7 @@ do_steps: &do_steps
   - run:
       name: wait emulator to boot
       command: |
-        if [[ $CROSS_COMPILE == *android* ]]; then
-        cd ~;
-        wget -c https://github.com/thehajime/lkl-docker/raw/master/circleci/android/circle-android.sh;
-          ~/circle-android.sh wait-for-boot;
-          cd -;
-        elif [[ $CROSS_COMPILE == *freebsd* ]] || [[ -n "$LKL_QEMU_TEST" ]]; then
-          while ! $MYSSH -o ConnectTimeout=1 exit 2> /dev/null
-          do
-             sleep 5
-          done
-        fi
+        echo "1" ;
   - run:
       name: run tests
       command: |
