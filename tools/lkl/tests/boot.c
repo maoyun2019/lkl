@@ -533,7 +533,8 @@ static int lkl_test_chroot(void)
 }
 static int lkl_test_execve(void)
 {
-  int ret
+  int pid;
+  int ret;
 //  char *sc[2]; 
 //  sc[0]="/bin/bash"; 
 //  sc[1]= NULL; 
