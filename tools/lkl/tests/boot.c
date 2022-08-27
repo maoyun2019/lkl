@@ -542,7 +542,6 @@ static int lkl_test_execve
 		return TEST_FAILURE;
 	}
 }
-}
 static int lkl_test_disk_mount(void)
 {
   struct lkl_disk disk;
