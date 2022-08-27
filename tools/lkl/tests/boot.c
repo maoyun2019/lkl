@@ -497,6 +497,16 @@ static int lkl_test_join(void)
 		return TEST_FAILURE;
 	}
 }
+static int lkl_test_mount_sysfs(void)
+{
+  int ret = lkl_sys_mount("/sysfs","/mnt/0000fe02/sys","none",MS_BIND,NULL)
+  if (ret == 0) {
+		lkl_test_logf("mount sysfs succeed:)");
+		return TEST_SUCCESS;
+	} else {
+		lkl_test_logf("mount sysfs failed :(");
+		return TEST_FAILURE;
+}
 static int lkl_test_chroot(void)
 {
   int ret = lkl_sys_chroot("/mnt/0000fe02");
