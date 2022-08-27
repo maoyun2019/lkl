@@ -533,15 +533,15 @@ static int lkl_test_chroot(void)
 }
 static int lkl_test_execve(void)
 {
-  int pid;
+  //int pid;
   int ret;
 //  char *sc[2]; 
 //  sc[0]="/bin/bash"; 
 //  sc[1]= NULL; 
 //  int ret = lkl_sys_execve(sc[0],sc,(char*[]){NULL});
-  if (!(pid=lkl_sys_fork())) {
+  //if (!(pid=lkl_sys_fork())) {
    ret = lkl_sys_execve("/sbin/init",(char*[]){NULL},(char*[]){NULL});
-  }
+  //}
   if (ret == 0) {
 		lkl_test_logf("execve success!");
 		return TEST_SUCCESS;
