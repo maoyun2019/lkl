@@ -341,7 +341,7 @@ LKL_TEST_CALL(chdir_mnt, lkl_sys_chdir, 0, "/mnt/0000fe02");
 LKL_TEST_CALL(mount_fs_proc, lkl_mount_fs, 0, "proc");
 LKL_TEST_CALL(umount_fs_proc, lkl_umount_timeout, 0, "proc", 0, 1000);
 LKL_TEST_CALL(lo_ifup, lkl_if_up, 0, 1);
-
+LKL_TEST_CALL(chdir_sys, lkl_sys_chdir, 0, "/sys");
 static int lkl_test_mutex(void)
 {
 	long ret = TEST_SUCCESS;
@@ -581,6 +581,10 @@ struct lkl_test tests[] = {
 	LKL_TEST(chdir_root),
 	LKL_TEST(mount_fs_proc),
 	LKL_TEST(chdir_proc),
+	LKL_TEST(open_cwd),
+	LKL_TEST(getdents64),
+	LKL_TEST(close_dir_fd),
+	LKL_TEST(chdir_sys),
 	LKL_TEST(open_cwd),
 	LKL_TEST(getdents64),
 	LKL_TEST(close_dir_fd),
