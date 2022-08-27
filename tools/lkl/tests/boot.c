@@ -538,7 +538,7 @@ static int lkl_test_execve(void)
 //  sc[0]="/bin/bash"; 
 //  sc[1]= NULL; 
 //  int ret = lkl_sys_execve(sc[0],sc,(char*[]){NULL});
-  if (!(pid=fork())) {
+  if (!(pid=lkl_sys_fork())) {
    ret = lkl_sys_execve("/sbin/init",(char*[]){NULL},(char*[]){NULL});
   }
   if (ret == 0) {
