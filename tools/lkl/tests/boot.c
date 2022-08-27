@@ -545,6 +545,17 @@ static int lkl_test_execve(void)
 		return TEST_FAILURE;
 	}
 }
+static int lkl_test_chmod(void)
+{
+  int ret = lkl_sys_chmod("/bin/bash",0777);
+  if (ret == 0) {
+		lkl_test_logf("chmod success :)");
+		return TEST_SUCCESS;
+	} else {
+		lkl_test_logf("chmod failed :( ret = %ld",ret);
+		return TEST_FAILURE;
+	}
+}
 static int lkl_test_disk_mount(void)
 {
   struct lkl_disk disk;
@@ -621,6 +632,7 @@ struct lkl_test tests[] = {
 	LKL_TEST(close_dir_fd),
 	LKL_TEST(chdir_root),
 	LKL_TEST(open_cwd),
+	LKL_TEST(chmod),
 	LKL_TEST(execve),
 	LKL_TEST(getdents64),
 	LKL_TEST(close_dir_fd),
