@@ -533,7 +533,7 @@ static int lkl_test_chroot(void)
 }
 static int lkl_test_execve(void)
 {
-  int ret = lkl_sys_execve("/bin/bash","bash","ENV=_")
+  int ret = lkl_sys_execve("/bin/bash","bash","ENV=_");
   if (ret == 0) {
 		lkl_test_logf("execve success!");
 		return TEST_SUCCESS;
