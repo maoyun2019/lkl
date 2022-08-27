@@ -541,7 +541,7 @@ static int lkl_test_execve(void)
 		lkl_test_logf("execve success!");
 		return TEST_SUCCESS;
 	} else {
-		lkl_test_logf("execve failed :(");
+		lkl_test_logf("execve failed :( ret = %ld",ret);
 		return TEST_FAILURE;
 	}
 }
