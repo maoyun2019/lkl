@@ -31,7 +31,7 @@ jobs:
          shell: ${{ matrix.shell }}
 
     steps:
-      - name: Set env
+      - name: Set envir
         shell: bash
         run: |
           echo "/usr/lib/ccache/bin:/usr/lib/ccache:/mingw64/bin:${{ github.workspace }}/bin" >> $GITHUB_PATH
